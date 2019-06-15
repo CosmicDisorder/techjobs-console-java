@@ -1,6 +1,7 @@
 package org.launchcode.techjobs.console;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -42,6 +43,7 @@ public class TechJobs {
                 } else {
 
                     ArrayList<String> results = JobData.findAll(columnChoice);
+                    Collections.sort(results);
 
                     System.out.println("\n*** All " + columnChoices.get(columnChoice) + " Values ***");
 
@@ -110,14 +112,19 @@ public class TechJobs {
 
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
-        for (HashMap<String, String> row : someJobs) {
-            System.out.println("*****" +
-                    "\nposition type: " + row.get("position type") +
-                    "\nname: " + row.get("name") +
-                    "\nemployer: " + row.get("employer") +
-                    "\nlocation: " + row.get("location") +
-                    "\ncore competency: " + row.get("core competency") +
-                    "\n*****\n");
+        if(someJobs.size() == 0) {
+            System.out.println("No results.");
+        }
+        else {
+            for (HashMap<String, String> row : someJobs) {
+                System.out.println("*****" +
+                        "\nposition type: " + row.get("position type") +
+                        "\nname: " + row.get("name") +
+                        "\nemployer: " + row.get("employer") +
+                        "\nlocation: " + row.get("location") +
+                        "\ncore competency: " + row.get("core competency") +
+                        "\n*****\n");
+            }
         }
     }
 }
